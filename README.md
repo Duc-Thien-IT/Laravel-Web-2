@@ -23,4 +23,10 @@ zookeeper-server-start.bat .\config\zookeeper.properties
 -Producer:
 .\bin\windows\kafka-console-producer.bat --topic MyFirstTopic --bootstrap-server localhost:9092
 
+==================================================================================================
+========================= RUN SWAGGER ============================================================
+composer require zircote/swagger-php
+laravel-web-2>composer require darkonline/l5-swagger
+php artisan vendor:publish --provider "L5Swagger\L5SwaggerServiceProvider"
+php artisan l5-swagger:generate
 
