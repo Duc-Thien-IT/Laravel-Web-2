@@ -72,6 +72,19 @@ return [
             'after_commit' => false,
         ],
 
+        'kafka' => [
+            'driver' => 'kafka',
+            'queue' => env('KAFKA_QUEUE', 'default'),
+            'consumer_group_id' => env('KAFKA_CONSUMER_GROUP_ID', 'your-consumer-group-id'),
+            'brokers' => env('KAFKA_BROKERS', 'localhost:9092'),
+            'sleep_on_error' => env('KAFKA_ERROR_SLEEP', 5),
+            'security_protocol' => env('KAFKA_SECURITY_PROTOCOL', 'PLAINTEXT'),
+            'sasl' => [
+                'mechanisms' => env('KAFKA_SASL_MECHANISMS', null),
+                'username' => env('KAFKA_SASL_USERNAME', null),
+                'password' => env('KAFKA_SASL_PASSWORD', null),
+            ],
+        ],
     ],
 
     /*
