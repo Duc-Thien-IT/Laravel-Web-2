@@ -1,8 +1,8 @@
 <?php 
 
 return [
-    'brokers' => env('KAFKA_BROKERS', 'localhost:9092'),
-    'schema_registry' => env('KAFKA_SCHEMA_REGISTRY', 'http://localhost:8081'),
+    'brokers' => env('KAFKA_BROKERS', 'localhost:9092'),  
+    'schema_registry' => env('KAFKA_SCHEMA_REGISTRY', 'http://schema-registry:8081'),  
     'topics' => [
         'test' => env('KAFKA_TOPIC_TEST', 'test_topic'),
     ],

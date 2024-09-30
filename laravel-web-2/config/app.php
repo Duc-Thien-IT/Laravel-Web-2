@@ -123,4 +123,14 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
+    // 'providers' => [
+    // // ...
+    //     Junges\Kafka\KafkaServiceProvider::class,
+    // ],
+
+    // 'aliases' => [
+    //     // ...
+    //     'Kafka' => Junges\Kafka\Facades\Kafka::class,
+    // ],
+
 ];

@@ -20,21 +20,14 @@ RUN apt-get update && apt-get install -y \
     pkg-config \
     libcurl4-openssl-dev \
     libssl-dev \
+    librdkafka-dev \
+    zlib1g-dev \
+    python3 \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Install kafka extension
-RUN apt-get update && apt-get install -y \
-    zlib1g-dev \
-    python \
-    && git clone https://github.com/edenhill/librdkafka.git /tmp/librdkafka \
-    && cd /tmp/librdkafka \
-    && ./configure \
-    && make \
-    && make install \
-    && pecl install rdkafka \
-    && docker-php-ext-enable rdkafka \
-    && rm -rf /tmp/librdkafka \
-    && apt-get clean && rm -rf /var/lib/apt/lists/*
+# Install rdkafka extension
+RUN pecl install rdkafka \
+    && docker-php-ext-enable rdkafka
 
 # PHP Extensions
 RUN docker-php-ext-install -j$(nproc) \
