@@ -19,3 +19,12 @@ Artisan::command('kafka:consume', function () {
 
     $consumer->consume();
 })->describe('Consume messages from Kafka');
+
+Artisan::command('kafka:consume', function () {
+    Kafka::createConsumer(['test_topic'])
+        ->withHandler(function ($message) {
+            // Handle the consumed message
+        })
+        ->build()
+        ->consume();
+})->describe('Consume messages from Kafka topic');

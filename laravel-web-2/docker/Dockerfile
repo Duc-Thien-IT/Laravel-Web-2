@@ -29,7 +29,7 @@ RUN apt-get update && apt-get install -y \
 RUN pecl install rdkafka \
     && docker-php-ext-enable rdkafka
 
-# PHP Extensions
+# Install PHP extensions
 RUN docker-php-ext-install -j$(nproc) \
     pdo_mysql \
     mbstring \
@@ -41,13 +41,18 @@ RUN docker-php-ext-install -j$(nproc) \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install gd
 
-# Install Composer
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-
 # Set new UID for user www-data
 RUN usermod -u 1000 www-data
 
 WORKDIR /var/www/
+
+# Copy the application code
 COPY . .
+
+# Install Composer dependencies
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
+    && composer install --no-scripts --no-autoloader
+
 EXPOSE 9000
+
 CMD ["php-fpm"]
