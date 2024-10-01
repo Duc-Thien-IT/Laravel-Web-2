@@ -8,7 +8,9 @@ Step run project
 4. docker-compose up -d --build
 5. docker exec -it laravel-app bash
 6. php artisan migrate
-7. composer require mateusjunges/laravel-kafka
+7. docker compose exec app bash -c "php -m | grep rdkafka" rdkafka
+8. docker compose exec app composer require mateusjunges/laravel-kafka
+9. 
 
 
 -Zookeeper:
